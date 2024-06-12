@@ -1,5 +1,6 @@
 import React from "react";
 import { myTeams } from "../data/data";
+import Team from "./Team";
 
 class Teams extends React.Component {
   constructor() {
@@ -14,26 +15,16 @@ class Teams extends React.Component {
   render() {
     return (
       <div className="container">
-        <div>
-          <img src={this.state.myTeams[0].img} alt="" />
-          <h3>{this.state.myTeams[0].name}</h3>
-          <button onClick={() => this.addANewVote(0)}>Vote</button>
-          <div>votes:{this.state.myTeams[0].votes}</div>
-        </div>
-
-        <div>
-          <img src={this.state.myTeams[1].img} alt="" />
-          <h3>{this.state.myTeams[1].name}</h3>
-          <button onClick={() => this.addANewVote(1)}>Vote</button>
-          <div>votes:{this.state.myTeams[1].votes}</div>
-        </div>
-
-        <div>
-          <img src={this.state.myTeams[2].img} alt="" />
-          <h3>{this.state.myTeams[2].name}</h3>
-          <button onClick={() => this.addANewVote(2)}>Vote</button>
-          <div>votes:{this.state.myTeams[2].votes}</div>
-        </div>
+        {this.state.myTeams.map((team, index) => {
+          return (
+            <Team
+              team={team}
+              index={index}
+              key={team.className}
+              addANewVote={this.addANewVote}
+            />
+          );
+        })}
       </div>
     );
   }
